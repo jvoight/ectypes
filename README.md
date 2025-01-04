@@ -1,4 +1,4 @@
-The following code accompanies the paper _On Galois inertial types of elliptic curves over QQ_p_ by Lassina Dembele, Nuno Freitas, and John Voight (https://arxiv.org/abs/2203.07787).  
+The following code accompanies the paper _On Galois inertial types of elliptic curves over QQ_p_ (https://arxiv.org/abs/2203.07787) by Lassina Dembele, Nuno Freitas, and John Voight.  
 
 * Table 1 is implemented as follows (running over random elliptic curves):
 
