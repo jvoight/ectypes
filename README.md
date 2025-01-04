@@ -1,6 +1,6 @@
 The following code accompanies the paper "On Galois inertial types of elliptic curves over QQ_p" by Lassina Dembele, Nuno Freitas, and John Voight (https://arxiv.org/abs/2203.07787).  
 
-* Table 1 is implemented (using the fields in Tables 4, 10, and 17) as follows (running over random elliptic curves):
+* Table 1 is implemented as follows (running over random elliptic curves):
 
 ```
 Attach("ectypes.m");
