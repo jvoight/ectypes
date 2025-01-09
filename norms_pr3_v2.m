@@ -6,7 +6,7 @@ Q3 := pAdicField(3, 200);
 ZZ3 := Integers(Q3);
 
 /*************************************************************************************************************/
-// The following proves that types arise from elliptic curves over Qq
+// The following proves that listed types arise from elliptic curves over Q3.
 
 // The following are the curves listed in Table 8 with e \neq 2 
 c_labels := ["162d1", "36a1", "162a2", "27a1", "54a1","972b1", "243b1", "243a1" ];
