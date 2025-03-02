@@ -24,9 +24,7 @@ For example:
 load "canonical_map_check_pr3.m";
 ```
 
-* Lemma 7.2.1 is verified in `find_q_gens_ex_type2.m` and `find_u_gens_ex_type2.m`.
-
-* Strong computational evidence for Lemma 7.2.2 is provided in `find_gens_ex_type1.m` and `find_gens_ex_type2.m`.
+* Strong computational evidence for Lemma 7.2.2 is provided in `find_gens_ex_type1.m`,  `find_gens_ex_type2.m`, `find_q_gens_ex_type2.m`, and `find_u_gens_ex_type2.m`.
 
 * Table 10, realizing nonexceptional types for elliptic curves over QQ_2, is verified in `norms_pr2_v3.m`.
 
