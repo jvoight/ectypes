@@ -86,15 +86,13 @@ for m := 1 to #discs do
   OL := Integers(L);
   H, toH := NormGroup(OL, toOK);
   imH := sub<G | [ toG(phi2(R!toOK(H.l))@@mR2) : l in [1..Ngens(H)] ]>;
-  imH2 := [ (imH.m)@@psi : m in [1..Ngens(imH)] ];
+  imH2 := sub<G2 | [ (imH.m)@@psi : m in [1..Ngens(imH)] ] >;
   Append(~NGs, imH2);
   Append(~Gs, G2);
 end for;
                     
-\\ \\ \\
-
 /* Checking that each inertial type is realised by an elliptic curve. */
 
-for l in [1..14] do
-  printf "%o&%o&%o&%o\\\\\n" , c_labels[l], NGs[l];
+for l in [1..12] do
+  printf "%o&%o\\\\\n" , c_labels[l], NGs[l];
 end for;
