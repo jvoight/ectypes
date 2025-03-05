@@ -11,7 +11,7 @@ PolsE<t> := PolynomialRing(E);
 K0<a1> := NumberField(x^3 - 2);
 PolsK0<z> := PolynomialRing(K0);
 
-// The following are the curves listed in Table 8 with e \neq 2 
+// The following are the curves listed in Table 16 with e \neq 2 
 c_labels := [ "648b1", "1296c1", "5184e1", "5184w1", "3456a1", "3456e1", "3456o1", "3456c1" ];
 cond_exps := [ 3, 6, 12, 12, 11, 11, 11, 11 ];
 n_gens := [ [5..5], [3..5], [1..5], [1..5], [2..5], [2..5], [2..5], [2..5] ];
@@ -93,17 +93,20 @@ pol_seq2 := [ [ t^2 + a*t + a, t^2 + a*t + a^2 + a ], [ t^2 + a*t + a, t^2 + a*t
               [ t^2 + 2*t + a + 2, t^2 + 2*t + a + 6 ], [ t^2 + 2*t + a + 2, t^2 + 2*t + a + 6 ],
               [ t^2 + 2*t + a + 2, t^2 + 2*t + a + 6 ], [ t^2 + 2*t + a + 2, t^2 + 2*t + a + 6 ] ];
 
+/* Some useful global polynomials. */
+
 pol_seq3 := [ [ z^2 + a1*z + a1, z^2 + a1*z + a1^2 + a1 ], [ z^2 + a1*z + a1, z^2 + a1*z + a1^2 + a1 ],
               [ z^2 + a1*z + a1, z^2 + a1*z + a1^2 + a1 ], [ z^2 + a1*z + a1, z^2 + a1*z + a1^2 + a1 ],
               [ z^2 + 2*z + a1 + 2, z^2 + 2*z + a1 + 6 ], [ z^2 + 2*z + a1 + 2, z^2 + 2*z + a1 + 6 ],
               [ z^2 + 2*z + a1 + 2, z^2 + 2*z + a1 + 6 ], [ z^2 + 2*z + a1 + 2, z^2 + 2*z + a1 + 6 ] ];
  
 
-/* Some useful global polynomials. */
+
 
 Gs := [ ];
 NGs := [ ];
 for m := 1 to #pol_seq1 do
+  print "++++++++++++++++++++++++++++++++++++";
   for l := 1 to #pol_seq2[m] do
     OK<b> := ext<OE | pol_seq2[m][l]>;
     K := FieldOfFractions(OK);
@@ -136,28 +139,22 @@ for m := 1 to #pol_seq1 do
     gens := gen_seqs[m][n_gens[m]];
     gens2 := [ toG(phi2(R!s)@@mR2) : s in gens ];
     G2 := AbelianGroup([ Order(s) : s in gens2 ]);
-    cond_exps[m];
-    [ Order(s) : s in gens2 ];
     psi := hom< G2 -> G | gens2 >;
     H, toH := NormGroup(OL, toOK);
     imH := sub<G | [ toG(phi2(R!toOK(H.l))@@mR2) : l in [1..Ngens(H)] ]>;
-    gg2 := [ (imH.m)@@psi : m in [1..Ngens(imH)] ];
-    imH2 := sub<G2 | gg2>;
-    ss := (#imH2 eq 1) select [] else [ Order(g) : g in gg2 ];
-    ss;
-    gg2;
-    //Append(~NGs, imH2);
-    //Append(~Gs, G2);
+    c_labels[m];
+    if #(G/imH) ne 4 then
+    	print "this quadratic field is excluded";
+    else
+    	assert #(G/imH) eq 4;
+    	gg2 := [ (imH.m)@@psi : m in [1..Ngens(imH)] ];
+    	imH2 := sub<G2 | gg2>;
+    	ss := (#imH2 eq 1) select [] else [ Order(g) : g in gg2 ];
+        cond_exps[m], [ Order(s) : s in gens2 ], ss,  gg2;
+    end if;   
+    
   end for;
 end for;
-
-
-\\ \\ \\
-
-/* Checking that each inertial type is realised by an elliptic curve. */
-
-for l in [1..14] do
-  printf "%o&%o&%o&%o\\\\\n" , c_labels[l], NGs[l];
-end for;
+print "++++++++++++++++++++++++++++++++++++";
 
 

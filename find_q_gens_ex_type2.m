@@ -1,5 +1,3 @@
-/* This file checks that each inertial type described for p = 2 are realised by some elliptic curve. */
-
 // Attach("../../height_package/bdd_height_integers2.m");
 ZZ := Integers();
 QQ := Rationals();

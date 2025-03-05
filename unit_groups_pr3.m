@@ -38,34 +38,10 @@ OKfst, mf := UnitGroup(OKf);
 assert sub<OKfst | [mOKf(x)@@mf : x in gs]> eq OKfst;
 print "  ", Explode(gs), "generates (O_K/pp^f)^*, f =", f0;
 
+e := Valuation(3*OK, PiK);
 topf := [Order(mOKf(x)@@mf) : x in gs[1..2]];
-OKf1, mOKf1 := quo<OK | PiK^(f0+1)>;
+OKf1, mOKf1 := quo<OK | PiK^(f0+e)>;
 OKf1st, mf1 := UnitGroup(OKf1);
-lvf := sub<OKf1st | [mOKf1(1+x)@@mf1 : x in Basis(PiK^f0)]>;  // (1 + pp^f)/(1 + pp^(f+1))
+lvf := sub<OKf1st | [mOKf1(1+x)@@mf1 : x in Basis(PiK^f0)]>;  // (1 + pp^f)/(1 + pp^(f+e))
 assert sub<lvf | [mOKf1(gs[i]^topf[i])@@mf1 : i in [1..2]]> eq lvf;
 printf "  %o^%o (%o)^%o generates (1 + pp^f)/(1+pp^(f+1))\n", gs[1], topf[1], gs[2], topf[2];
-
-/* Remark 5.1.5: images of generators by the canonical surjection. */
-
-if d eq -3 then
-  w := (1+s)/2;
-	R1 := quo< OK | PiK^3 >;
-	R2 := quo< OK | PiK^4 >;
-	U1, mR1 := UnitGroup(R1);
-	U2, mR2 := UnitGroup(R2);
-	G1, mG1 := quo< U1 | 4@@mR1 >;
-	G2, mG2 := quo< U2 | 4@@mR2 >;
-	gens := [ -w, w - 3 ];
-	gens1 := [ mG1((R2!(w - 3))@@mR1) ];
-	gens2 := [ mG2((R2!s)@@mR2) : s in gens ];
-	gens2_images := [ mG1((R1!s)@@mR1) : s in gens ];
-
-	G := AbelianGroup([ Order(gens1[1]) ]);
-	H := AbelianGroup([ Order(s) : s in gens2 ]);
-	psi := hom< G -> G1 | gens1 >;
-	phi := hom< H -> G2 | gens2 >;
-
-	printf "The images of the chosen generators under the canonical map: %o -> %o\n\n", H, G;
-	[ mG1((R1!OK!mR2(phi(H.m)@@mG2))@@mR1)@@psi : m in [1..Ngens(H)] ];
-end if;
-
