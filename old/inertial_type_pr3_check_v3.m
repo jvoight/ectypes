@@ -84,10 +84,8 @@ for m := 1 to #discs do
   Append(~Gs, G);
 end for;
 
-
-\\ \\ \\
 /* Checking that each inertial type is realised by an elliptic curve. */
 
-for l in [1..10] do
+for l in [1..2] do
   printf "%o&%o&%o&%o\\\\\n" , c_labels[l], pol_seq[l], fld_count, NGs[l];
 end for;

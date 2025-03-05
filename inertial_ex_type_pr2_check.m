@@ -132,14 +132,3 @@ for m in [1..#pol_seq] do
   Append(~NGs, imH);
   Append(~Gs, G);
 end for;
-
-
-\\ \\ \\
-
-/* Checking that each inertial type is realised by an elliptic curve. */
-
-for l in [1..14] do
-  printf "%o&%o&%o&%o\\\\\n" , c_labels[l], NGs[l];
-end for;
-
-
