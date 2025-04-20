@@ -97,7 +97,23 @@ pol_seq3 := [ [ z^2 + a1*z + a1, z^2 + a1*z + a1^2 + a1 ], [ z^2 + a1*z + a1, z^
               [ z^2 + a1*z + a1, z^2 + a1*z + a1^2 + a1 ], [ z^2 + a1*z + a1, z^2 + a1*z + a1^2 + a1 ],
               [ z^2 + 2*z + a1 + 2, z^2 + 2*z + a1 + 6 ], [ z^2 + 2*z + a1 + 2, z^2 + 2*z + a1 + 6 ],
               [ z^2 + 2*z + a1 + 2, z^2 + 2*z + a1 + 6 ], [ z^2 + 2*z + a1 + 2, z^2 + 2*z + a1 + 6 ] ];
- 
+
+_<x2> := PolynomialRing(ZZ2);
+_<x2E> := PolynomialRing(OE);
+
+for i := 1 to #pol_seq1 do  // the 8 fields K_{i,r} with i = 1,2 and r = +/-1, +/-2
+  f := pol_seq1[i];
+  print f;
+  Kir := SplittingField(Parent(x2)!f);
+  assert #Roots(x^3-2,Kir) ge 1;
+     // OK, now we can work with the relative extension, which will be a bit easier
+
+  Kir := SplittingField(Parent(x2E)!f);
+  for g in pol_seq2[i] do
+    assert #Roots(g,Kir) ge 1;
+  end for;
+end for;
+
 
 /* Some useful global polynomials. */
 
@@ -150,3 +166,14 @@ for m := 1 to #pol_seq1 do
     //Append(~Gs, G2);
   end for;
 end for;
+
+
+\\ \\ \\
+
+/* Checking that each inertial type is realised by an elliptic curve. */
+
+for l in [1..14] do
+  printf "%o&%o&%o&%o\\\\\n" , c_labels[l], NGs[l];
+end for;
+
+
