@@ -32,6 +32,6 @@ load "canonical_map_check_pr3.m";
 
 * The computations in Lemma 7.2.2 (giving Tables 11 through 15) are given in `unit_grps_ex_type1.m` through `unit_grps_ex_type5.m`, depending on the field.
 
-* Table 16 is verified in `inertial_ex_type_pr2_check2.m`.
+* Table 16 (and the subfields in Lemma 7.2.1) are verified in `inertial_ex_type_pr2_check2.m`.
 
 * Table 17, realizing the exceptional types for elliptic curves over QQ_2, is verified in `inertial_ex_type_pr2_check_v2`.
